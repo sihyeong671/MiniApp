@@ -1,6 +1,5 @@
 package com.example.miniapp
 
-
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,21 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class ContactsFragment : Fragment(){
+class PhotoFragment : Fragment(){
 
 
     companion object{
         const val TAG : String = "로그"
 
-        fun newInstance(): ContactsFragment{
-            return ContactsFragment()
+        fun newInstance(): PhotoFragment{
+            return PhotoFragment()
         }
     }
 
     // 메모리에 올라갔을 때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "ContactsFragment - onCreate called")
+        Log.d(TAG, "PhotoFragment - onCreate called")
 
     }
 
@@ -31,7 +30,7 @@ class ContactsFragment : Fragment(){
     // 프레그먼트를 안고 있는 액티비티에 붙었을 때
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d(TAG, "ContactsFragment - onAttach() called")
+        Log.d(TAG, "PhotoFragment - onAttach() called")
     }
 
 
@@ -42,11 +41,8 @@ class ContactsFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.frag_contacts, container, false)
-    }
+        Log.d(TAG, "PhotoFragment - onCreateView() called")
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_photo, container, false)
     }
 }
-

@@ -1,11 +1,13 @@
 package com.example.miniapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity(){
 
@@ -15,7 +17,6 @@ class MainActivity : AppCompatActivity(){
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var contactsFragment: ContactsFragment
-    private lateinit var photoFragment: PhotoFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
@@ -24,32 +25,32 @@ class MainActivity : AppCompatActivity(){
 
         val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
+
+
         bottom_nav.setOnItemSelectedListener { item ->
-            changeFragment(
-                when(item.itemId){
+
+            when(item.itemId){
+
+
                     R.id.nav_home -> {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
-//                        bottom_nav.itemTextColor = ContextCompat.getColorStateList(this, R.color.color_home)
-                        HomeFragment()
+                        changeFragment(HomeFragment())
                     }
                     R.id.nav_photo -> {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_photo)
-//                        bottom_nav.itemTextColor = ContextCompat.getColorStateList(this, R.color.card_1)
-                        PhotoFragment()
+                        val photoIntent = Intent(this, PhotoActivity::class.java)
+                        startActivity(photoIntent)
+
                     }
                     R.id.nav_contacts -> {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_contacts)
-//                        bottom_nav.itemTextColor = ContextCompat.getColorStateList(this, R.color.card_1)
-                        ContactsFragment()
+                        changeFragment(ContactsFragment())
                     }
                     else -> {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
-//                        bottom_nav.itemTextColor = ContextCompat.getColorStateList(this, R.color.card_1)
-                        HomeFragment()
+                        changeFragment(HomeFragment())
                     }
                 }
-
-            )
             true
         }
         bottom_nav.selectedItemId = R.id.nav_home

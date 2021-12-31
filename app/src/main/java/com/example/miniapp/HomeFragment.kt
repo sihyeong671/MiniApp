@@ -13,7 +13,6 @@ class HomeFragment : Fragment(){
 
     companion object{
         const val TAG : String = "로그"
-
         fun newInstance(): HomeFragment{
             return HomeFragment()
         }

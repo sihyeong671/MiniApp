@@ -1,8 +1,6 @@
 package com.example.miniapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -57,13 +55,6 @@ class MainActivity : AppCompatActivity() {
         TestData("첫 번째 데이터15", "두 번째 데이터15", "세 번째 데이터15")
     )
 
-    private val fl: FrameLayout by lazy {
-        findViewById(R.id.fl_con)
-    }
-
-    private lateinit var homeFragment: HomeFragment
-    private lateinit var contactsFragment: ContactsFragment
-
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
         super.onCreate(savedInstanceState)
@@ -73,7 +64,6 @@ class MainActivity : AppCompatActivity() {
 
 
         val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
 
 
         bottom_nav.setOnItemSelectedListener { item ->
@@ -87,8 +77,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.nav_photo -> {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_photo)
-                        val photoIntent = Intent(this, PhotoActivity::class.java)
-                        startActivity(photoIntent)
+                        changeFragment(PhotoFragment())
 
                     }
                     R.id.nav_contacts -> {

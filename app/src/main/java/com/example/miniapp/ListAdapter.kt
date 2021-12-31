@@ -30,7 +30,7 @@ class ListAdapter (private var list: MutableList<TestData>): RecyclerView.Adapte
     }
 
     override fun getItemCount(): Int {
-        return list.count()
+        return list.size
         //size를 측정.
     }
 
@@ -41,10 +41,5 @@ class ListAdapter (private var list: MutableList<TestData>): RecyclerView.Adapte
         //ViewHolder의 bind method로 데이터를 넘긴다. 몇 번째 셀에 어떤 데이터를 넣을 지 관리한다.
     }
 
-    fun replaceList(newList: MutableList<TestData>) {
-        list = newList.toMutableList()
-        //어댑터의 데이터가 변했다는 notify를 날린다
-        notifyDataSetChanged()
-    }
 
 }

@@ -6,11 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.miniapp.databinding.ActivityMainBinding
 import com.example.miniapp.databinding.FragContactsBinding
 
 
@@ -57,12 +55,12 @@ class ContactsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var list: ArrayList<TestData> = requireActivity().intent!!.extras!!.get("DataList") as ArrayList<TestData> //list를 전달받음!
+        val list: ArrayList<TestData> = requireActivity().intent!!.extras!!.get("DataList") as ArrayList<TestData> //list를 전달받음!
 
         listAdapter = ListAdapter(list)
         binding.listView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         binding.listView.adapter = listAdapter
-        Log.e("ContactsFragment", "Data List: ${list}")
+        Log.e("ContactsFragment", "Data List: $list")
 
         // Fragment에서 전달받은 list를 넘기면서 Adapter 생성
 

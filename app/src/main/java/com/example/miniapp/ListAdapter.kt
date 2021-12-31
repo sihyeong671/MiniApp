@@ -7,17 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.miniapp.databinding.ContactsDataListBinding
 
 
-class ListAdapter (private var list: MutableList<TestData>): RecyclerView.Adapter<ListAdapter.ListItemViewHolder> () {
+
+class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<ListAdapter.ListItemViewHolder> () {
 
 // onBindViewHolder의 역할을 대신한다, View와 데이터를 연결시키는 함수
     inner class ListItemViewHolder(private val binding: ContactsDataListBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: TestData, position: Int) {
+        fun bind(data: User, position: Int) {
+
+            val(data_id, data_name, data_phonenum) = data
+
             Log.d("ListAdapter", "===== ===== ===== ===== bind ===== ===== ===== =====") //로그 출력
-            Log.d("ListAdapter", data.getData1()+" "+data.getData2()+" "+data.getData3())
-            binding.data1Text.text = data.getData1()
-            binding.data2Text.text = data.getData2()
-            binding.data3Text.text = data.getData3()
+            Log.d("ListAdapter", data_id+" "+data_name+" "+data_phonenum)
+
+            binding.data1Text.text = data_id
+            binding.data2Text.text = data_name
+            binding.data3Text.text = data_phonenum
         }
     }
 
@@ -41,10 +46,5 @@ class ListAdapter (private var list: MutableList<TestData>): RecyclerView.Adapte
         //ViewHolder의 bind method로 데이터를 넘긴다. 몇 번째 셀에 어떤 데이터를 넣을 지 관리한다.
     }
 
-    fun replaceList(newList: MutableList<TestData>) {
-        list = newList.toMutableList()
-        //어댑터의 데이터가 변했다는 notify를 날린다
-        notifyDataSetChanged()
-    }
 
 }

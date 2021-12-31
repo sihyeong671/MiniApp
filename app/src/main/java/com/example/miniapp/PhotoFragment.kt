@@ -32,6 +32,7 @@ class PhotoFragment : Fragment(), PhotoAdapter.ClickListener {
     private fun initRecycleView(view: View){
         val recyclerView = view.findViewById<RecyclerView>(R.id.photoView)
         recyclerView.layoutManager = GridLayoutManager(activity, 3)
+        recyclerView.setHasFixedSize(true)
         adapter = PhotoAdapter(photoList, this)
         recyclerView.adapter = adapter
 
@@ -39,25 +40,25 @@ class PhotoFragment : Fragment(), PhotoAdapter.ClickListener {
 
 
     private  fun buildDisplayPhoto() {
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
-            photoList.add(Photo(R.drawable.cat, "고양이"))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
+            photoList.add(Photo(R.drawable.cat))
     }
 
     override fun onItemClick(photoModel: Photo) {

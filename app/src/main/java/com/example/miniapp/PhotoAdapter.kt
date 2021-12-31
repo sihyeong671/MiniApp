@@ -4,24 +4,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Photo(val img:Int, val name: String)
+class Photo(val img:Int)
 
 class PhotoViewHolder(v : View) : RecyclerView.ViewHolder(v) {
-    var photoName: TextView
+
     var photoImg : ImageView
 
     init {
-        photoName = v.findViewById(R.id.textView)
         photoImg = v.findViewById(R.id.imageView)
     }
 
 
 }
 
-class PhotoAdapter(val photoList: List<Photo>, val clickListenner: ClickListener) : RecyclerView.Adapter<PhotoViewHolder>(){
+class PhotoAdapter(private val photoList: List<Photo>, private val clickListenner: ClickListener) : RecyclerView.Adapter<PhotoViewHolder>(){
 
 
 
@@ -33,9 +31,12 @@ class PhotoAdapter(val photoList: List<Photo>, val clickListenner: ClickListener
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-        holder.photoName.text = photoList[position].name
+
         holder.photoImg.setImageResource(photoList[position].img)
 
+
+        holder.photoImg.setBackgroundResource(R.drawable.round_img)
+        holder.photoImg.clipToOutline = true
         holder.itemView.setOnClickListener{
             clickListenner.onItemClick(photoList[position])
         }

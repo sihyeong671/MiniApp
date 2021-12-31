@@ -4,16 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_1"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:gravity="center">
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+
+   <ImageView
+       android:layout_width="139dp"
+       android:layout_height="169dp"
        android:layout_gravity="center"
-       android:text="@string/home_text"
-       android:textSize="30sp"
-       android:textColor="@color/black"
-       android:textStyle="bold"
-       />
+       android:src="@drawable/miniapp_logo" />
 
 </FrameLayout>

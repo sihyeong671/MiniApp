@@ -20,9 +20,9 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
             Log.d("ListAdapter", "===== ===== ===== ===== bind ===== ===== ===== =====") //로그 출력
             Log.d("ListAdapter", data_id+" "+data_name+" "+data_phonenum)
 
-            binding.data1Text.text = data_id
+            binding.data1Text.text = data_phonenum
             binding.data2Text.text = data_name
-            binding.data3Text.text = data_phonenum
+            binding.tvIcon.text = data_phonenum.slice(IntRange(0,0))
         }
     }
 

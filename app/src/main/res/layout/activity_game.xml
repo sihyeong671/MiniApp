@@ -17,8 +17,21 @@
             android:layout_height="wrap_content"
             android:text="낚시하기"
             android:textSize="20sp"
-            android:background="@drawable/round_corner"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="invisible"
+        />
+
+        <TextView
+            android:id="@+id/fishing_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="화면울 터치해 주세요"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+
+            />
 
         <ImageView
             android:id="@+id/deckView"

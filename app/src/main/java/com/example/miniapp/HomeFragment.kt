@@ -57,11 +57,13 @@ class HomeFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        binding.button.visibility = View.VISIBLE
         Log.d(TAG, "HomeFragment - onViewCreated() called")
         super.onViewCreated(view, savedInstanceState)
 
         binding.button.setOnClickListener{
             Log.d(TAG, "Button Pressed")
+
             val intent = Intent(getActivity(), GameActivity::class.java)
             startActivity(intent)
 

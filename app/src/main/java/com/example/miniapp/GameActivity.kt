@@ -1,35 +1,63 @@
 package com.example.miniapp
-import android.content.Intent
+import android.content.Context
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.miniapp.databinding.ActivityGameBinding
 
-class GameActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var binding: ActivityGameBinding
+    private lateinit var sensorManager : SensorManager
+    private var gameOver = false
+    private var gameStart = false
+
+    override fun onResume() {
+        super.onResume()
+
+        setUpSensorStuff()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
         super.onCreate(savedInstanceState)
 
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         binding.fishingGo.visibility = View.VISIBLE
 
 
     }
 
-    override fun dispatchTouchEvent(ev : MotionEvent?):Boolean {
-        Log.d("GameActivity", "The screen touched")
-        binding.fishingGo.visibility = View.INVISIBLE
-        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate)
-        binding.rodView.startAnimation(animation)
-        return super.dispatchTouchEvent(ev)
+    private fun setUpSensorStuff(){
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)?.also {
+            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_GAME, SensorManager.SENSOR_DELAY_GAME)
+        }
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if(event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION){
+            val xAxis = event.values[0]
+            val yAxis = event.values[1]
+            val zAxis = event.values[2]
+            if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart){
+                binding.fishingGo.visibility = View.INVISIBLE
+                val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate)
+                binding.rodView.startAnimation(animation)
+                gameStart = true
+            }
+
+
+        }
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+        return
     }
 
 }

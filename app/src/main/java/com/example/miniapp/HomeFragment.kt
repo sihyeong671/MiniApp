@@ -49,9 +49,7 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "HomeFragment - onCreateView() called")
-
         binding = ActivityGameBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PhotoFragment"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="center_horizontal"
+    android:background="@color/card_2"
+    android:orientation="vertical">
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/photoView"
@@ -15,5 +17,8 @@
        android:scrollbars="vertical"
        android:padding="10dp"
        tools:ignore="MissingConstraints" />
+
+
+
 
 </LinearLayout>

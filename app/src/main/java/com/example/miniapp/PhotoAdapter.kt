@@ -1,10 +1,13 @@
 package com.example.miniapp
 
+import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class Photo(val img:Int)
 
@@ -19,10 +22,7 @@ class PhotoViewHolder(v : View) : RecyclerView.ViewHolder(v) {
 
 }
 
-class PhotoAdapter(private val photoList: List<Photo>, private val clickListenner: ClickListener) : RecyclerView.Adapter<PhotoViewHolder>(){
-
-
-
+class PhotoAdapter(private val photoList: ArrayList<Uri>, private val clickListener: ClickListener, val context: Context) : RecyclerView.Adapter<PhotoViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
 
@@ -31,14 +31,16 @@ class PhotoAdapter(private val photoList: List<Photo>, private val clickListenne
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-
-        holder.photoImg.setImageResource(photoList[position].img)
+        val item = photoList[position]
+//        Glide.with(context).load(item).override(100, 100).into(holder.photoImg)
+        Glide.with(context).load(item).into(holder.photoImg)
 
 
         holder.photoImg.setBackgroundResource(R.drawable.round_img)
         holder.photoImg.clipToOutline = true
+
         holder.itemView.setOnClickListener{
-            clickListenner.onItemClick(photoList[position])
+            clickListener.onItemClick(photoList[position])
         }
     }
 
@@ -47,7 +49,7 @@ class PhotoAdapter(private val photoList: List<Photo>, private val clickListenne
     }
 
     interface ClickListener {
-        fun onItemClick(photoModel: Photo)
+        fun onItemClick(photoModel: Uri)
     }
 
 }

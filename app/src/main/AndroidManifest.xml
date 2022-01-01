@@ -14,12 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniApp">
         <activity
-            android:name=".PhotoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Photo"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

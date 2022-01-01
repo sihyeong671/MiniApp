@@ -54,6 +54,7 @@ class ContactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         var list: ArrayList<User> =
             requireActivity().intent!!.extras!!.get("DataList") as ArrayList<User>
         //list를 전달받는 과정이다.

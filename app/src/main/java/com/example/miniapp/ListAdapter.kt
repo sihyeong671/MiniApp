@@ -35,7 +35,7 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
     }
 
     override fun getItemCount(): Int {
-        return list.count()
+        return list.size
         //size를 측정.
     }
 

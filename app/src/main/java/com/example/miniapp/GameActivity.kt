@@ -1,12 +1,18 @@
 package com.example.miniapp
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.*
+import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.miniapp.databinding.ActivityGameBinding
 
@@ -84,10 +90,15 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                 )
             }
 
-
         }
     }
 
+    override fun dispatchTouchEvent(ev : MotionEvent?):Boolean {
+        val dialog = FishingDialog()
+        dialog.show(supportFragmentManager, "FishingDialog")
+
+        return super.dispatchTouchEvent(ev)
+    }
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
         return
     }

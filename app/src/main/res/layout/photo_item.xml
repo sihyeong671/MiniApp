@@ -10,16 +10,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:background="@drawable/round_img"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/cat"
+            android:layout_margin="3dp"
+            android:elevation="3dp"
             tools:ignore="MissingConstraints" />
 
     </RelativeLayout>

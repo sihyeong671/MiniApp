@@ -4,11 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.ImageButton
 import android.provider.ContactsContract
+import android.provider.MediaStore
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -101,13 +100,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_IMAGES_CODE){
-            if(resultCode == Activity.RESULT_OK){
-                images.clear()
-                
     fun readContacts(view: View){
         getContact()
     }
@@ -135,6 +128,12 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "연락처 정보를 가져왔습니다.", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGES_CODE){
+            if(resultCode == Activity.RESULT_OK){
+                images.clear()
 
                 val fragmentManager: FragmentManager = supportFragmentManager
                 val fragmentTransaction : FragmentTransaction = fragmentManager.beginTransaction()

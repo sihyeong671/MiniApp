@@ -61,18 +61,8 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun dispatchTouchEvent(ev : MotionEvent?):Boolean {
-        val builder = AlertDialog.Builder(this)
-        val dialogView = layoutInflater.inflate(R.layout.dialog_getfish, null)
-
-        builder.setView(dialogView)
-            .setPositiveButton("나가기") { dialogInterface, i ->
-
-            }
-            .setNegativeButton("재도전") { dialogInterface, i ->
-                binding.fishingGo.visibility = View.VISIBLE
-                /* 취소일 때 아무 액션이 없으므로 빈칸 */
-            }
-            .show()
+        val dialog = FishingDialog()
+        dialog.show(supportFragmentManager, "FishingDialog")
 
         return super.dispatchTouchEvent(ev)
     }

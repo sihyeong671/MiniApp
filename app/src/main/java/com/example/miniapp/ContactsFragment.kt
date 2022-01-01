@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.miniapp.databinding.FragContactsBinding
 
 
-class ContactsFragment : Fragment(){
+class ContactsFragment : Fragment() {
     private lateinit var listAdapter: ListAdapter
 
-    private var _binding : FragContactsBinding? = null
+    private var _binding: FragContactsBinding? = null
     private val binding get() = _binding!!
 
-    companion object{
-        const val TAG : String = "로그"
-        fun newInstance(): ContactsFragment{
+    companion object {
+        const val TAG: String = "로그"
+        fun newInstance(): ContactsFragment {
             return ContactsFragment()
         }
     }
@@ -36,7 +36,6 @@ class ContactsFragment : Fragment(){
         super.onAttach(context)
         Log.d(TAG, "ContactsFragment - onAttach() called")
     }
-
 
 
     //뷰 생성
@@ -55,15 +54,18 @@ class ContactsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list: ArrayList<TestData> = requireActivity().intent!!.extras!!.get("DataList") as ArrayList<TestData> //list를 전달받음!
+
+        var list: ArrayList<User> =
+            requireActivity().intent!!.extras!!.get("DataList") as ArrayList<User>
+        //list를 전달받는 과정이다.
 
         listAdapter = ListAdapter(list)
         binding.listView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        binding.listView.adapter = listAdapter
-        Log.e("ContactsFragment", "Data List: $list")
+
+        Log.e("ContactsFragment", "Data List: ${list}")
 
         // Fragment에서 전달받은 list를 넘기면서 Adapter 생성
-
+        binding.listView.adapter = listAdapter
     }
-}
 
+}

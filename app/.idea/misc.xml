@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/drawable/ic_contacts.xml" value="0.29375" />
+        <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/drawable/round_contacts_comp.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/drawable/round_corner.xml" value="0.27395833333333336" />
+        <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/drawable/rounded_drawable.xml" value="0.29375" />
         <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/layout/contacts_data_list.xml" value="0.264" />
         <entry key="..\:/Users/SY Bae/Desktop/MadCamp/Project/1stweek/MiniApp/app/src/main/res/layout/frag_contacts.xml" value="0.24739583333333334" />

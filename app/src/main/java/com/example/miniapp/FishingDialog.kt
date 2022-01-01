@@ -29,7 +29,6 @@ class FishingDialog : DialogFragment() {
             val intent = Intent(getActivity(), MainActivity::class.java)
             startActivity(intent)
         }
-
         return view
     }
 

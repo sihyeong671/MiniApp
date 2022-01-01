@@ -1,10 +1,15 @@
 package com.example.miniapp
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniapp.databinding.ContactsDataListBinding
+import java.util.Random
+
 
 
 
@@ -19,6 +24,12 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
 
             Log.d("ListAdapter", "===== ===== ===== ===== bind ===== ===== ===== =====") //로그 출력
             Log.d("ListAdapter", data_id+" "+data_name+" "+data_phonenum)
+
+            val rnd = Random()
+            val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+
+            var bgShape : GradientDrawable = binding.tvIcon.background as GradientDrawable
+            bgShape.setColor(color)
 
             binding.data1Text.text = data_phonenum
             binding.data2Text.text = data_name

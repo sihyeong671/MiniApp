@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var contactsFragment: ContactsFragment
     private lateinit var photoFragment: PhotoFragment
 
+    var dragFlag = false
+    var firstDragFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
         super.onCreate(savedInstanceState)
@@ -33,11 +35,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val bottom_nav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         getContact()
         dataList = getStringArrayPref(this,"contact")
+
+
 
         bottom_nav.setOnItemSelectedListener { item ->
             changeFragment(

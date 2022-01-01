@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     var dataList : ArrayList<User> = arrayListOf()
 
 
+    var dragFlag = false
+    var firstDragFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
         super.onCreate(savedInstanceState)
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         getContact()
         dataList = getStringArrayPref(this,"contact")
+
+
 
         bottom_nav.setOnItemSelectedListener { item ->
 

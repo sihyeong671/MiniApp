@@ -86,6 +86,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
             if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart){
                 binding.fishingGo.visibility = View.INVISIBLE
+
                 val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate) //낚싯대 던지는 애니메이션
                 binding.rodView.startAnimation(animation)
 

@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.INVISIBLE
 
-                        changeFragment(HomeFragment())
+                        changeFragment(GameFragment())
 
                     }
                 }

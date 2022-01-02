@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -34,6 +35,9 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.fishingGo.visibility = View.VISIBLE
+
+        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_flow)
+        binding.deckView.startAnimation(animation)
 
 
     }

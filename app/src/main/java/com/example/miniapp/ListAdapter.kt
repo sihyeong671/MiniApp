@@ -33,7 +33,7 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
 
             binding.data1Text.text = data_phonenum
             binding.data2Text.text = data_name
-            binding.tvIcon.text = data_phonenum.slice(IntRange(0,0))
+            binding.tvIcon.text = data_phonenum.slice(IntRange(0,0)) //이게 여기에 있어서 매번 main에 호출될때마다 불려나오는 것 같다.
         }
     }
 

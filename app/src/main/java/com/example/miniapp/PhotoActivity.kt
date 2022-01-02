@@ -2,7 +2,6 @@ package com.example.miniapp
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 
@@ -18,7 +17,6 @@ class PhotoActivity : AppCompatActivity() {
 
         intent.getStringArrayListExtra("photoList")?.let{
             for(idx in  0 until (it.size)){
-                Log.d("로그",it[idx])
                 photoList.add(Uri.parse(it[idx]))
             }
         }

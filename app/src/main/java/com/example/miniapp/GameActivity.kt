@@ -18,6 +18,8 @@ import com.example.miniapp.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity(), SensorEventListener {
 
+
+
     private lateinit var binding: ActivityGameBinding
     private lateinit var sensorManager : SensorManager
     private var gameOver = false
@@ -67,6 +69,9 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
     override fun dispatchTouchEvent(ev : MotionEvent?):Boolean {
         val dialog = FishingDialog()
         dialog.show(supportFragmentManager, "FishingDialog")
+
+        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rod_flow)
+        binding.rodView.startAnimation(animation)
 
         return super.dispatchTouchEvent(ev)
     }

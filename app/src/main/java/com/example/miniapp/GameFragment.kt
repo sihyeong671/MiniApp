@@ -13,17 +13,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniapp.databinding.ActivityGameBinding
-import com.example.miniapp.databinding.FragContactsBinding
-import com.example.miniapp.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment(){
+class GameFragment : Fragment(){
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: ActivityGameBinding
 
     companion object{
         const val TAG : String = "로그"
-        fun newInstance(): HomeFragment{
-            return HomeFragment()
+        fun newInstance(): GameFragment{
+            return GameFragment()
         }
     }
 
@@ -50,10 +48,24 @@ class HomeFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "HomeFragment - onCreateView() called")
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = ActivityGameBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        binding.button.visibility = View.VISIBLE
+        Log.d(TAG, "HomeFragment - onViewCreated() called")
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.button.setOnClickListener{
+            Log.d(TAG, "Button Pressed")
+
+            val intent = Intent(getActivity(), GameActivity::class.java)
+            startActivity(intent)
+
+        }
+
+    }
 
 }

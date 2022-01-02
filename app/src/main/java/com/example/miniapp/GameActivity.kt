@@ -52,8 +52,11 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
         setContentView(binding.root)
         binding.fishingGo.visibility = View.VISIBLE
 
-        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_flow)
-        binding.deckView.startAnimation(animation)
+        val animation1 = AnimationUtils.loadAnimation(this, R.anim.anim_flow) //배 흔들리는 애니메이션
+        binding.deckView.startAnimation(animation1)
+
+        val animation2 = AnimationUtils.loadAnimation(this, R.anim.anim_rod_flow) //낚싯대 흔들거리는 애니메이션
+        binding.rodView.startAnimation(animation2)
 
 
     }
@@ -76,8 +79,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
 
 
-
-
         if(event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION){
             val xAxis = event.values[0]
             val yAxis = event.values[1]
@@ -85,13 +86,18 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
             if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart){
                 binding.fishingGo.visibility = View.INVISIBLE
-                val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate)
+                val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate) //낚싯대 던지는 애니메이션
                 binding.rodView.startAnimation(animation)
+
+
                 fishAppearTime = Math.random()*8000 + 2000
                 gameStart = true
-                handler.postDelayed(
+                handler.postDelayed( //fishappertime 뒤에 안에 있는 코드가 실행됨
                     Runnable {
                         vibe.vibrate(effect)
+
+                        val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
+                        dialog.show(supportFragmentManager, "FishingDialog")
                     }, fishAppearTime.toLong()
                 )
             }
@@ -99,15 +105,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    override fun dispatchTouchEvent(ev : MotionEvent?):Boolean {
-        val dialog = FishingDialog()
-        dialog.show(supportFragmentManager, "FishingDialog")
-
-        val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rod_flow)
-        binding.rodView.startAnimation(animation)
-
-        return super.dispatchTouchEvent(ev)
-    }
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
         return
     }

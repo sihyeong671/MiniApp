@@ -1,20 +1,14 @@
 package com.example.miniapp
 
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
-import com.example.miniapp.ContactsFragment.Companion.TAG
 import com.example.miniapp.databinding.DialogGetfishBinding
 import java.util.*
 

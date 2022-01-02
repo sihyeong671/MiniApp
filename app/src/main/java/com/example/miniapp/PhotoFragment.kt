@@ -1,14 +1,12 @@
 package com.example.miniapp
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +17,7 @@ class PhotoFragment : Fragment(), PhotoAdapter.ClickListener {
 
     private lateinit var adapter: PhotoAdapter
     private val photoList: ArrayList<Uri> = ArrayList()
-    private lateinit var imgView : ImageView
+    private val sendList: ArrayList<String> = ArrayList()
     lateinit var mainActivity: MainActivity
 
     override fun onAttach(context: Context) {
@@ -39,13 +37,10 @@ class PhotoFragment : Fragment(), PhotoAdapter.ClickListener {
         if(arguments != null){
             val uris: ArrayList<String> = arguments?.getStringArrayList("img") as ArrayList<String>
             for(i in 0 until (uris.size)){
-                Log.d("log","1")
                 photoList.add(Uri.parse(uris[i]))
+                sendList.add(uris[i])
             }
         }
-
-
-
 
         initRecycleView(view)
         return view
@@ -61,10 +56,14 @@ class PhotoFragment : Fragment(), PhotoAdapter.ClickListener {
         recyclerView.adapter = adapter
     }
 
-
-
-    override fun onItemClick(photoModel: Uri) {
-        Toast.makeText(activity, "사진", Toast.LENGTH_SHORT ).show()
+    override fun onItemClick(position: Int) {
+        mainActivity?.let{
+            val intent = Intent(it, PhotoActivity::class.java)
+            intent.putExtra("photoList",sendList)
+            intent.putExtra("position", position)
+            it.startActivity(intent)
+        }
+//        Toast.makeText(mainActivity, "사진", Toast.LENGTH_SHORT).show()
     }
 
 

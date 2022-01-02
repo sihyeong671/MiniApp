@@ -25,6 +25,7 @@
         android:orientation="vertical"
         android:layout_gravity="bottom"
         android:padding="5dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         >
 
         <ImageButton
@@ -53,8 +54,6 @@
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/item_menu"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-
             />
 
 

@@ -2,12 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.miniapp">
 
-
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
 
     <application
         android:allowBackup="true"
@@ -17,8 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniApp">
         <activity
-            android:name=".GameActivity"
-             />
+            android:name=".PhotoActivity"
+            android:exported="false" />
+        <activity android:name=".GameActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

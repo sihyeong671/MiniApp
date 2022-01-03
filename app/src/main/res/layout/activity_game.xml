@@ -25,9 +25,10 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="낚시하기"
+            android:background="@drawable/round_corner_fish_btn"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:visibility="invisible"

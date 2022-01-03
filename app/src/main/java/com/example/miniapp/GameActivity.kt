@@ -10,10 +10,12 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.miniapp.databinding.ActivityGameBinding
+import com.example.miniapp.databinding.DialogGetfishBinding
 
 class GameActivity : AppCompatActivity(), SensorEventListener {
 
     public lateinit var binding: ActivityGameBinding
+    public lateinit var binding_f: DialogGetfishBinding
     private lateinit var sensorManager : SensorManager
 
     private lateinit var vibe: Vibrator
@@ -22,6 +24,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
     private var startTime = System.currentTimeMillis()
     private var currentTime = System.currentTimeMillis()
+    public var fish_run = false
     public var fishing = false
     public var gameOver = false
     public var gameStart = false
@@ -94,6 +97,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                         vibe.vibrate(effect)
                         // 무언가 걸렸습니다 낚아주세요 텍스트 뷰
                         binding.fishCatch.visibility = View.VISIBLE
+                        binding.fishCatch.text = "물고기를 낚아주세요!"
                         fishing = true
                     }, fishAppearTime.toLong()
                 )
@@ -129,15 +133,16 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     gameOver = true
                     gameStart = false
                     fishing = false
+                    fish_run = true
+                    binding.fishCatch.visibility = View.INVISIBLE
+
+                    val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
+                    dialog.show(supportFragmentManager, "FishingDialog")
                     //물고기를 놓쳤습니다. 출력
+
                 }
 
             }
-
-
-
-
-
         }
     }
 

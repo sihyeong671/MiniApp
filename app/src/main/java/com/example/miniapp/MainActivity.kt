@@ -104,11 +104,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-    fun readContacts(view: View){
-        getContact()
-    }
-
     fun getContact(){
         val contactList: MutableList<User> = ArrayList()
         val contacts = contentResolver.query(

@@ -107,6 +107,9 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                 if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){
                     Log.d("TAG", "1")
 
+                    val animation4 = AnimationUtils.loadAnimation(this, R.anim.anim_rotate) //낚아 올리는 애니메이션
+                    binding.rodView.startAnimation(animation4)
+
                     handler.postDelayed(
                         Runnable {
                             Log.d("TAG", "2")

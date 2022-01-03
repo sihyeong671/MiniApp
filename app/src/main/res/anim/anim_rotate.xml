@@ -32,4 +32,13 @@
         >
     </rotate>
 
+    <translate
+        android:duration="2000"
+        android:toXDelta="3%"
+        android:toYDelta="2%"
+        android:repeatMode="reverse"
+        android:repeatCount="infinite" >
+    </translate>
+
+
 </set>

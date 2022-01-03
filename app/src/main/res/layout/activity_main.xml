@@ -25,6 +25,7 @@
         android:orientation="vertical"
         android:layout_gravity="bottom"
         android:padding="5dp"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         >
 
         <ImageButton
@@ -36,10 +37,11 @@
             android:layout_marginRight="10dp"
             android:adjustViewBounds="true"
 
+
             android:background="@drawable/round_corner"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_add_photo"
+            android:src="@drawable/ic_add_photos"
             android:visibility="visible" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -53,8 +55,6 @@
             app:itemRippleColor="@android:color/transparent"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/item_menu"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-
             />
 
 

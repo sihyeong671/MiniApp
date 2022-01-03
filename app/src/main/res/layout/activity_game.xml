@@ -11,11 +11,24 @@
         android:gravity="center">
 
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/fish_catch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="물고기가 걸렸습니다"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+
+            />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:text="낚시하기"
+            android:background="@drawable/round_corner_fish_btn"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:visibility="invisible"
@@ -25,7 +38,7 @@
             android:id="@+id/fishing_go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="화면울 터치해 주세요"
+            android:text="화면을 흔들어 주세요"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_gravity="center"

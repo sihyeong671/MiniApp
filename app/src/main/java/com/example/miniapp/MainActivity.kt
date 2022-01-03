@@ -1,15 +1,19 @@
 package com.example.miniapp
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -24,16 +28,15 @@ class MainActivity : AppCompatActivity() {
     private var images = ArrayList<String>()
     private val PICK_IMAGES_CODE = 0
 
-
     var dataList : ArrayList<User> = arrayListOf()
 
 
-    var dragFlag = false
-    var firstDragFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) { // 앱 최초 실행 시 수행
         super.onCreate(savedInstanceState)
 
+        // 권한 물어보기
+        checkPermissions()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -56,13 +59,13 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     R.id.nav_contacts -> {
-                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_contacts)
+                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.INVISIBLE
                         changeFragment(ContactsFragment())
                     }
 
                     R.id.nav_photo -> {
-                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_photo)
+                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.VISIBLE
                         changeFragment(PhotoFragment())
                     }
@@ -71,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                         bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.INVISIBLE
 
-                        changeFragment(HomeFragment())
+                        changeFragment(GameFragment())
 
                     }
                 }
@@ -83,6 +86,46 @@ class MainActivity : AppCompatActivity() {
         // pick images clicking this button
         add_photo_btn.setOnClickListener {
             pickImagesIntent()
+        }
+    }
+
+    private fun checkPermissions(){
+
+        var rejectedPermissiontList = ArrayList<String>()
+
+        val permissions = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_CONTACTS)
+
+        for(permisson in permissions){
+            if(ContextCompat.checkSelfPermission(this, permisson) != PackageManager.PERMISSION_GRANTED){
+                rejectedPermissiontList.add(permisson)
+            }
+        }
+
+        if(rejectedPermissiontList.isNotEmpty()){
+            val array = arrayOfNulls<String>(rejectedPermissiontList.size)
+            ActivityCompat.requestPermissions(this, rejectedPermissiontList.toArray(array), 100)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            100 -> {
+                if(grantResults.isNotEmpty()){
+                    for((i, permission) in permissions.withIndex()){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                            Log.d("TAG","권한에러")
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -102,11 +145,6 @@ class MainActivity : AppCompatActivity() {
 //        startActivityForResult(intent, PICK_IMAGES_CODE)
 
 
-    }
-
-
-    fun readContacts(view: View){
-        getContact()
     }
 
     fun getContact(){

@@ -17,7 +17,7 @@ class FishingDialog : DialogFragment() {
     private val binding get() = _binding!!
     lateinit var gameActivity: GameActivity
 
-    var FishList = listOf(R.drawable.fish, R.drawable.fish2, R.drawable.fish3, R.drawable.fish4) //물고기 이미지 리스트
+    var FishList = listOf(R.drawable.fish, R.drawable.fish2, R.drawable.fish3, R.drawable.fish4, R.raw.fish_flowing) //물고기 이미지 리스트
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,11 +30,19 @@ class FishingDialog : DialogFragment() {
 
         val view = binding.root
 
-        val random = Random()
-        val num = random.nextInt(4) //랜덤 물고기
+        if(gameActivity.fish_run){
+            binding.fishAnim.setAnimation(R.raw.fish_flowing)
+            binding.dialogTitle.text = "물고기가 달아났어요!"
 
-        binding.fish.setImageResource(FishList.get(num)) //랜덤 물고기를 넣어준다.
+            gameActivity.fish_run = false
+        }
+        else{
+            val random = Random()
+            val num = random.nextInt(4) //랜덤 물고기
 
+            binding.fish.setImageResource(FishList.get(num)) //랜덤 물고기를 넣어준다.
+
+        }
         // 레이아웃 배경을 투명하게 해줌, 필수 아님
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

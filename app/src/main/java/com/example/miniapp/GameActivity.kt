@@ -109,7 +109,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
             if(fishing && !gameOver){
                 currentTime = System.currentTimeMillis()
 
-                binding.limitTime.text = "남은시간 : " + String.format("%.02f", 5 - (currentTime - startTime - fishAppearTime)/1000)
+                binding.limitTime.text = "남은시간 : ${5 - ((currentTime - startTime - fishAppearTime)/1000).toInt()}"
 
                 if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){ // 낚아올릴 경우
                     Log.d("TAG", "1")

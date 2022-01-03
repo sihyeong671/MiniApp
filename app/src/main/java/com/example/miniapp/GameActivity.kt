@@ -72,6 +72,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
     }
 
 
+//    @SuppressLint("SetTextI18n")
     override fun onSensorChanged(event: SensorEvent?) {
 
         if(event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION){
@@ -97,16 +98,20 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                         vibe.vibrate(effect)
                         // 무언가 걸렸습니다 낚아주세요 텍스트 뷰
                         binding.fishCatch.visibility = View.VISIBLE
+                        binding.limitTime.visibility = View.VISIBLE
                         binding.fishCatch.text = "물고기를 낚아주세요!"
+
                         fishing = true
                     }, fishAppearTime.toLong()
                 )
             }
 
             if(fishing && !gameOver){
-                // 낚아올릴 경우
                 currentTime = System.currentTimeMillis()
-                if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){
+
+                binding.limitTime.text = "남은시간 : " + String.format("%.02f", 5 - (currentTime - startTime - fishAppearTime)/1000)
+
+                if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){ // 낚아올릴 경우
                     Log.d("TAG", "1")
 
                     //낚아 올리는 애니메이션
@@ -114,6 +119,8 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     binding.rodView.startAnimation(animation4)
 
                     binding.fishCatch.visibility = View.INVISIBLE
+                    binding.limitTime.visibility = View.INVISIBLE
+
                     handler.postDelayed(
                         Runnable {
                             Log.d("TAG", "2")
@@ -135,6 +142,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     fishing = false
                     fish_run = true
                     binding.fishCatch.visibility = View.INVISIBLE
+                    binding.limitTime.visibility = View.INVISIBLE
 
                     val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
                     dialog.show(supportFragmentManager, "FishingDialog")

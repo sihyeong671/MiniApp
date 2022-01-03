@@ -1,19 +1,12 @@
 package com.example.miniapp
-import android.app.PendingIntent.getActivity
-import android.content.Intent
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.*
-import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.miniapp.databinding.ActivityGameBinding
 
@@ -28,15 +21,14 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var vibeManager: VibratorManager
     private lateinit var effect: VibrationEffect
 
+    private var startTime = System.currentTimeMillis()
+    private var currentTime = System.currentTimeMillis()
     private var gameOver = false
     private var gameStart = false
     private var fishAppearTime:Double = 0.0
     private var handler = Handler(Looper.getMainLooper()) // 여기서 쓰레드를 가져와야한다
 
     // 버전에 따라 다르게 작동
-
-
-
 
 
     override fun onResume() {
@@ -78,8 +70,8 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
 
-
         if(event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION){
+
             val xAxis = event.values[0]
             val yAxis = event.values[1]
             val zAxis = event.values[2]
@@ -92,22 +84,50 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
 
                 fishAppearTime = Math.random()*8000 + 2000
+
+                startTime = System.currentTimeMillis()
                 gameStart = true
                 handler.postDelayed( //fishappertime 뒤에 안에 있는 코드가 실행됨
                     Runnable {
                         vibe.vibrate(effect)
-
-                        val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
-                        dialog.show(supportFragmentManager, "FishingDialog")
+                        // 무언가 걸렸습니다 낚아주세요 텍스트 뷰
                     }, fishAppearTime.toLong()
                 )
+
+                if(gameStart && !gameOver){
+
+                    // 낚아올릴 경우
+                    currentTime = System.currentTimeMillis()
+                    if(xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0){
+                        vibe.vibrate(effect)
+                        val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
+                        dialog.show(supportFragmentManager, "FishingDialog")
+                        // 재시작인경우 변수 초기화 해야함
+                    }
+
+                    // 아무 반응 없을 경우
+                    if(currentTime - startTime >= 3){
+                        gameOver = true
+                        //물고기를 놓쳤습니다. 출력
+                    }
+
+                }
             }
+
+
+
+
 
         }
     }
 
-    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
         return
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacksAndMessages(null)
     }
 
 }

@@ -41,6 +41,7 @@ class FishingDialog : DialogFragment() {
         binding.dialBtnRe.setOnClickListener {
             dismiss()
             gameActivity.gameOver = false
+            gameActivity.binding.fishingGo.visibility = View.VISIBLE
         }
         binding.dialBtnOut.setOnClickListener {
 //            val intent = Intent(getActivity(), MainActivity::class.java)

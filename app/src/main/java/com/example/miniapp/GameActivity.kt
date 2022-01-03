@@ -13,7 +13,7 @@ import com.example.miniapp.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var binding: ActivityGameBinding
+    public lateinit var binding: ActivityGameBinding
     private lateinit var sensorManager : SensorManager
 
     private lateinit var vibe: Vibrator

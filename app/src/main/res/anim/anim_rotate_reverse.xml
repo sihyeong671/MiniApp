@@ -7,7 +7,7 @@
         android:duration="300"
         android:pivotX="0"
         android:pivotY="100%"
-        android:toDegrees="-100"
+        android:toDegrees="20"
         android:interpolator="@android:anim/overshoot_interpolator"
         >
     </rotate>
@@ -18,16 +18,16 @@
         android:duration="300"
         android:pivotX="0"
         android:pivotY="100%"
-        android:toDegrees="40"
+        android:toDegrees="-40"
         android:interpolator="@android:anim/accelerate_interpolator"
         >
     </rotate>
 
     <rotate
-        android:duration="200"
+        android:duration="500"
         android:pivotX="0"
         android:pivotY="100%"
-        android:toDegrees="-20"
+        android:toDegrees="20"
         android:interpolator="@android:anim/anticipate_interpolator"
         >
     </rotate>

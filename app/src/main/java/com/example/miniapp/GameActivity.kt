@@ -106,7 +106,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     Log.d("TAG", "1")
 
                     //낚아 올리는 애니메이션
-                    val animation4 = AnimationUtils.loadAnimation(this, R.anim.anim_rotate)
+                    val animation4 = AnimationUtils.loadAnimation(this, R.anim.anim_rotate_reverse)
                     binding.rodView.startAnimation(animation4)
 
                     binding.fishCatch.visibility = View.INVISIBLE

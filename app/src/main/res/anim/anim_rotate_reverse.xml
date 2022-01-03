@@ -7,7 +7,7 @@
         android:duration="300"
         android:pivotX="0"
         android:pivotY="100%"
-        android:toDegrees="-20"
+        android:toDegrees="-100"
         android:interpolator="@android:anim/overshoot_interpolator"
         >
     </rotate>

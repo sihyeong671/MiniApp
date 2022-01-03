@@ -59,13 +59,13 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     R.id.nav_contacts -> {
-                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_contacts)
+                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.INVISIBLE
                         changeFragment(ContactsFragment())
                     }
 
                     R.id.nav_photo -> {
-                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_photo)
+                        bottom_nav.itemIconTintList = ContextCompat.getColorStateList(this, R.color.color_home)
                         add_photo_btn.visibility = View.VISIBLE
                         changeFragment(PhotoFragment())
                     }

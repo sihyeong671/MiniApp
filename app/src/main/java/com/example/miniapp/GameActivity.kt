@@ -5,14 +5,13 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.*
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.miniapp.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity(), SensorEventListener {
-
-
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var sensorManager : SensorManager
@@ -23,6 +22,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
     private var startTime = System.currentTimeMillis()
     private var currentTime = System.currentTimeMillis()
+    private var fishing = false
     private var gameOver = false
     private var gameStart = false
     private var fishAppearTime:Double = 0.0
@@ -76,14 +76,18 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
             val yAxis = event.values[1]
             val zAxis = event.values[2]
 
+
+
+
             if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart){
+                Log.d("TAG", "3")
                 binding.fishingGo.visibility = View.INVISIBLE
 
                 val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate) //낚싯대 던지는 애니메이션
                 binding.rodView.startAnimation(animation)
 
 
-                fishAppearTime = Math.random()*8000 + 2000
+                fishAppearTime = Math.random()*8000 + 3000
 
                 startTime = System.currentTimeMillis()
                 gameStart = true
@@ -91,27 +95,41 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     Runnable {
                         vibe.vibrate(effect)
                         // 무언가 걸렸습니다 낚아주세요 텍스트 뷰
+                        fishing = true
                     }, fishAppearTime.toLong()
                 )
+            }
 
-                if(gameStart && !gameOver){
+            if(fishing){
 
-                    // 낚아올릴 경우
-                    currentTime = System.currentTimeMillis()
-                    if(xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0){
-                        vibe.vibrate(effect)
-                        val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
-                        dialog.show(supportFragmentManager, "FishingDialog")
-                        // 재시작인경우 변수 초기화 해야함
-                    }
+                // 낚아올릴 경우
+                currentTime = System.currentTimeMillis()
+                if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){
+                    Log.d("TAG", "1")
 
-                    // 아무 반응 없을 경우
-                    if(currentTime - startTime >= 3){
-                        gameOver = true
-                        //물고기를 놓쳤습니다. 출력
-                    }
+                    handler.postDelayed(
+                        Runnable {
+                            Log.d("TAG", "2")
+                            vibe.vibrate(effect)
+                            val dialog = FishingDialog() //물고기 잡았습니다 창 띄우기
+                            dialog.show(supportFragmentManager, "FishingDialog")
+                        }, 1000
+                    )
 
+                    gameStart = false
+                    gameOver = true
+                    fishing = false
+                    // 재시작인경우 변수 초기화 해야함
                 }
+
+                // 아무 반응 없을 경우
+                if(currentTime - startTime >= fishAppearTime + 5000){
+                    gameOver = true
+                    gameStart = false
+                    fishing = false
+                    //물고기를 놓쳤습니다. 출력
+                }
+
             }
 
 

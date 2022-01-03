@@ -38,6 +38,7 @@ class FishingDialog : DialogFragment() {
         binding.dialBtnOut.setOnClickListener {
             val intent = Intent(getActivity(), MainActivity::class.java)
             startActivity(intent)
+            // gameActivity 종료
         }
         return view
     }

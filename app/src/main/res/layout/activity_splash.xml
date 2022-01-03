@@ -14,7 +14,7 @@
             android:layout_width="139dp"
             android:layout_height="169dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/miniapp_logo" />
+            android:src="@drawable/applogo_horizontal" />
 
         <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading_image"

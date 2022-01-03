@@ -22,9 +22,9 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
     private var startTime = System.currentTimeMillis()
     private var currentTime = System.currentTimeMillis()
-    private var fishing = false
-    private var gameOver = false
-    private var gameStart = false
+    public var fishing = false
+    public var gameOver = false
+    public var gameStart = false
     private var fishAppearTime:Double = 0.0
     private var handler = Handler(Looper.getMainLooper()) // 여기서 쓰레드를 가져와야한다
 
@@ -79,13 +79,12 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
 
 
 
-            if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart){
+            if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart && !gameOver){
                 Log.d("TAG", "3")
                 binding.fishingGo.visibility = View.INVISIBLE
 
                 val animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate) //낚싯대 던지는 애니메이션
                 binding.rodView.startAnimation(animation)
-
 
                 fishAppearTime = Math.random()*8000 + 3000
 
@@ -95,18 +94,19 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     Runnable {
                         vibe.vibrate(effect)
                         // 무언가 걸렸습니다 낚아주세요 텍스트 뷰
+                        binding.fishCatch.visibility = View.VISIBLE
                         fishing = true
                     }, fishAppearTime.toLong()
                 )
             }
 
-            if(fishing){
+            if(fishing && !gameOver){
 
                 // 낚아올릴 경우
                 currentTime = System.currentTimeMillis()
                 if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){
                     Log.d("TAG", "1")
-
+                    binding.fishCatch.visibility = View.INVISIBLE
                     handler.postDelayed(
                         Runnable {
                             Log.d("TAG", "2")
@@ -119,7 +119,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
                     gameStart = false
                     gameOver = true
                     fishing = false
-                    // 재시작인경우 변수 초기화 해야함
                 }
 
                 // 아무 반응 없을 경우

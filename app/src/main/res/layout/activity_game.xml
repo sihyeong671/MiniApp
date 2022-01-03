@@ -11,6 +11,18 @@
         android:gravity="center">
 
 
+        <TextView
+            android:id="@+id/fish_catch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="물고기가 걸렸습니다"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+
+            />
+
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"

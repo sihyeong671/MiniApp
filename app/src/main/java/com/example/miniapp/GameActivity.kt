@@ -68,6 +68,7 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
         effect = VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)
     }
 
+
     override fun onSensorChanged(event: SensorEvent?) {
 
         if(event?.sensor?.type == Sensor.TYPE_LINEAR_ACCELERATION){
@@ -75,8 +76,6 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
             val xAxis = event.values[0]
             val yAxis = event.values[1]
             val zAxis = event.values[2]
-
-
 
 
             if ((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0) && !gameStart && !gameOver){
@@ -101,11 +100,15 @@ class GameActivity : AppCompatActivity(), SensorEventListener {
             }
 
             if(fishing && !gameOver){
-
                 // 낚아올릴 경우
                 currentTime = System.currentTimeMillis()
                 if((xAxis >= 15.0 || yAxis >= 15.0 || zAxis >= 15.0 )&&(currentTime - startTime >= fishAppearTime + 500)){
                     Log.d("TAG", "1")
+
+                    //낚아 올리는 애니메이션
+                    val animation4 = AnimationUtils.loadAnimation(this, R.anim.anim_rotate_reverse)
+                    binding.rodView.startAnimation(animation4)
+
                     binding.fishCatch.visibility = View.INVISIBLE
                     handler.postDelayed(
                         Runnable {

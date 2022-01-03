@@ -1,7 +1,6 @@
 package com.example.miniapp
 
-import android.content.Intent
-
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -16,8 +15,15 @@ import java.util.*
 class FishingDialog : DialogFragment() {
     private var _binding: DialogGetfishBinding? = null
     private val binding get() = _binding!!
+    lateinit var gameActivity: GameActivity
 
     var FishList = listOf(R.drawable.fish, R.drawable.fish2, R.drawable.fish3, R.drawable.fish4) //물고기 이미지 리스트
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        gameActivity = context as GameActivity
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = DialogGetfishBinding.inflate(inflater, container, false)
@@ -34,10 +40,15 @@ class FishingDialog : DialogFragment() {
 
         binding.dialBtnRe.setOnClickListener {
             dismiss()
+            gameActivity.gameOver = false
+            gameActivity.binding.fishingGo.visibility = View.VISIBLE
         }
         binding.dialBtnOut.setOnClickListener {
-            val intent = Intent(getActivity(), MainActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(getActivity(), MainActivity::class.java)
+//            startActivity(intent)
+            // gameActivity 종료
+            gameActivity.gameStart = false
+            gameActivity.finish()
         }
         return view
     }

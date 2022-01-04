@@ -1,5 +1,6 @@
 package com.example.miniapp
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.miniapp.databinding.ContactsDataListBinding
 import com.example.miniapp.databinding.FragContactsBinding
 
 
 class ContactsFragment : Fragment() {
     private lateinit var listAdapter: ListAdapter
+    private lateinit var hbinding: ContactsDataListBinding
 
     private var _binding: FragContactsBinding? = null
     private val binding get() = _binding!!
@@ -54,7 +57,6 @@ class ContactsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         var list: ArrayList<User> =
             requireActivity().intent!!.extras!!.get("DataList") as ArrayList<User>
         //list를 전달받는 과정이다.
@@ -66,6 +68,16 @@ class ContactsFragment : Fragment() {
 
         // Fragment에서 전달받은 list를 넘기면서 Adapter 생성
         binding.listView.adapter = listAdapter
+
+
     }
 
-}
+
+
+
+
+
+
+    }
+
+

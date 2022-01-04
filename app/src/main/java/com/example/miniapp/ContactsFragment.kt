@@ -13,8 +13,8 @@ import com.example.miniapp.databinding.FragContactsBinding
 
 
 class ContactsFragment : Fragment() {
-    private lateinit var listAdapter: ListAdaptert
-
+    private lateinit var listAdapter: ListAdapter
+    private lateinit var list: ArrayList<User>
     private var _binding: FragContactsBinding? = null
     private val binding get() = _binding!!
 
@@ -55,11 +55,10 @@ class ContactsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        var list: ArrayList<User> =
-            requireActivity().intent!!.extras!!.get("DataList") as ArrayList<User>
+        list = requireActivity().intent!!.extras!!.get("DataList") as ArrayList<User>
         //list를 전달받는 과정이다.
 
-        listAdapter = ListAdapter(list)
+        listAdapter = ListAdapter(list, this)
         binding.listView.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
 
         Log.e("ContactsFragment", "Data List: ${list}")
@@ -67,5 +66,7 @@ class ContactsFragment : Fragment() {
         // Fragment에서 전달받은 list를 넘기면서 Adapter 생성
         binding.listView.adapter = listAdapter
     }
+
+
 
 }

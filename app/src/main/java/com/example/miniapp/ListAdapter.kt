@@ -5,7 +5,6 @@ import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.miniapp.databinding.ContactsDataListBinding
 import java.util.Random
@@ -13,7 +12,7 @@ import java.util.Random
 
 
 
-class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<ListAdapter.ListItemViewHolder> () {
+class ListAdapter(private var list: MutableList<User>, private val context: ContactsFragment): RecyclerView.Adapter<ListAdapter.ListItemViewHolder> () {
 
 // onBindViewHolder의 역할을 대신한다, View와 데이터를 연결시키는 함수
     inner class ListItemViewHolder(private val binding: ContactsDataListBinding): RecyclerView.ViewHolder(binding.root) {
@@ -35,6 +34,7 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
             binding.data2Text.text = data_name
             binding.tvIcon.text = data_phonenum.slice(IntRange(0,0)) //이게 여기에 있어서 매번 main에 호출될때마다 불려나오는 것 같다.
         }
+
     }
 
     // ViewHolder에게 item을 보여줄 View로 쓰일 item_data_list.xml를 넘기면서 ViewHolder 생성 -> binding
@@ -57,5 +57,8 @@ class ListAdapter (private var list: MutableList<User>): RecyclerView.Adapter<Li
         //ViewHolder의 bind method로 데이터를 넘긴다. 몇 번째 셀에 어떤 데이터를 넣을 지 관리한다.
     }
 
+    interface ClickListener{
+        fun onItemClick(position: Int)
+    }
 
 }

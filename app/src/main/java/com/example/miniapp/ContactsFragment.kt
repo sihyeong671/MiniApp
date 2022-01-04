@@ -15,8 +15,10 @@ import com.example.miniapp.databinding.FragContactsBinding
 
 
 class ContactsFragment : Fragment() {
+
     private lateinit var listAdapter: ListAdapter
     private lateinit var hbinding: ContactsDataListBinding
+
 
     private var _binding: FragContactsBinding? = null
     private val binding get() = _binding!!

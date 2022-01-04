@@ -20,7 +20,6 @@ class PhotoActivity : AppCompatActivity() {
                 photoList.add(Uri.parse(it[idx]))
             }
         }
-
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         viewPager.adapter = VpAdapter(photoList, this)
         viewPager.setCurrentItem(intent.getIntExtra("position", 0), false)

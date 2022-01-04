@@ -21,16 +21,21 @@
 
 > **Tab4: Game**
 
-가속도 센서와 진동센서를 이용해서 만든 간단한 낚시 게임이다
+가속도 센서와 진동센서를 이용해서 만든 간단한 낚시 게임이다   
+<img src="https://user-images.githubusercontent.com/77565951/148007584-b501974d-41f2-48f5-8a65-83747c73e4d1.gif"/>
+<img src="https://user-images.githubusercontent.com/77565951/148007625-130e7725-9ab8-47b4-b73d-b8b96e9375ae.gif"/>
 
 ## Detail
 
-메뉴
-상단 상태바 - 
+전체 순서도   
+<img src="./files/flowchart.png"/>   
+
+메뉴 : 하단 스크롤시 숨겨짐, 상단 스크롤시 다시 나타남(CoordinatorLayout 사용)
+
 ### 사용한 라이브러리
 
-Glide
-PhotoView
+- Glide   
+- PhotoView
 
 
 

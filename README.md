@@ -71,3 +71,7 @@ navigation bar를 통해 game tab로 이동하면 ‘낚시하기’ 버튼이 �
 - LottieAnimationView
 
 *app/app-debug.apk를 다운 혹은 우측의 링크를 클릭시 앱을 다운로드 할 수 있습니다.*[클릭시 다운로드](https://github.com/sihyeong671/MiniApp/raw/main/app/app-debug.apk)
+
+### Credit
+- 박시형 : bshlab671@naver.com
+- 배설영 : seolyeongbae@gm.gist.ac.kr
